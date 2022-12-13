@@ -1435,15 +1435,15 @@ int main(){
 
 ## Appendix E - References and Parts
 # Libraries
-* SD Card C Library:
-* LCD Screen C Library:
+* SD Card C Library: http://elm-chan.org/fsw/ff/00index_e.html
+* LCD Screen C Library: https://www.waveshare.com/wiki/Pico-LCD-1.14
 # Parts
-* Raspberry Pi Pico:
-* LCD Screen:
-* SD Card Breakout Board:
-* AA Battery Holder:
-* Infrared LED:
-* Infrared Reciever:
+* Raspberry Pi Pico: https://www.raspberrypi.com/products/raspberry-pi-pico/
+* LCD Screen: https://www.waveshare.com/wiki/Pico-LCD-1.14
+* SD Card Breakout Board: https://www.digikey.com/en/products/detail/adafruit-industries-llc/4682/12822319
+* AA Battery Holder: https://www.amazon.com/dp/B09V7Z4MT7?psc=1&ref=ppx_yo2ov_dt_b_product_details
+* Infrared LED: https://www.sparkfun.com/products/9349?_ga=2.201535761.1075059845.1667497389-1261656821.1667497389
+* Infrared Reciever: https://www.sparkfun.com/products/10266?_ga=2.197351087.1075059845.1667497389-1261656821.1667497389
 
 
 
