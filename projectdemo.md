@@ -3,12 +3,4 @@ title:  ""
 layout: post
 ---
 
-<iframe
-    width="640"
-    height="480"
-    src="https://youtu.be/OaMCaecrE4o"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen
->
-</iframe>
+[[![IMAGE_ALT](https://img.youtube.com/vi/UmX4kyB2wfg/0.jpg)](https://www.youtube.com/watch?v=UmX4kyB2wfg)](https://youtu.be/OaMCaecrE4o)
