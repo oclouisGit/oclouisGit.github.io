@@ -13,4 +13,9 @@ Everyone is familiar with the classic coffee table chaos of half a dozen TV remo
 
 We have often found that class projects are discarded after the completion of the course, but we wanted something that we would be able to use in our everyday lives. The most crucial feature of this remote that allows it to be legitimately useful is the non-volatile memory of the SD card. This allows the user to have the unpowered remote sitting on their coffee table, and when they power it on, all of their buttons and remotes are still there, ready to be used. Our project was a resounding success despite many hiccups along the way, and we are very proud of our demonstration.
 
+
+<p align="center">
+<img src="/uir_top.jpg" alt="block diagram" width="600"/>
+</p>
+
 Click through the other pages of this website to read more about our project, its design, and our process.
