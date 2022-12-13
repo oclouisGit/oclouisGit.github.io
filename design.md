@@ -7,6 +7,8 @@ layout: post
 
 Every decision made in the creation of this project was geared towards ensuring its usability in the real world. In our project proposal we envisioned a remote the size of any average TV remote that could replace the devices that control anything from LED light strips to air conditioning units. We knew that the range of infrared communication protocols used would cause issues if we were not clever about how we recorded the signals. We also knew that it was not feasible to add a small keyboard to the device itself given the time constraints of the project, so a serial interface needed to be developed for the programming of buttons and remotes. We also strongly wanted this device to be able to be used in our homes, and that objective drove our implementation decisions of what the user interface looks like, how we store the user’s data, and how it is powered. 
 
+<img src="block_diagram.jpg" alt="block diagram" width="600"/>
+
 ### Design Tradeoffs
 
 Since this idea had no advanced circuitry, most of the development time was spent on the software. The communication between the Raspberry Pi Pico and the LCD screen and SD card was done over the two SPI channels natively supported by the Pico. We also decided that a serial interface over UART was the most feasible way to allow the user to type in names for buttons and remotes. This simplified the wiring considerably but meant that extensive software development was needed. 
