@@ -7,7 +7,7 @@ layout: post
 
 Every decision made in the creation of this project was geared towards ensuring its usability in the real world. In our project proposal we envisioned a remote the size of any average TV remote that could replace the devices that control anything from LED light strips to air conditioning units. We knew that the range of infrared communication protocols used would cause issues if we were not clever about how we recorded the signals. We also knew that it was not feasible to add a small keyboard to the device itself given the time constraints of the project, so a serial interface needed to be developed for the programming of buttons and remotes. We also strongly wanted this device to be able to be used in our homes, and that objective drove our implementation decisions of what the user interface looks like, how we store the user’s data, and how it is powered. 
 
-<img src="block_diagram.jpg" alt="block diagram" width="600"/>
+<img src="/block_diagram.jpg" alt="block diagram" width="600"/>
 
 ### Design Tradeoffs
 
@@ -27,19 +27,19 @@ The desire for practicality limited the size of screen and buttons that we could
 
 The digital interface design was developed to be as clear and streamlined as possible. This means that there are only four main display states. The first display state is the boot screen. This screen lets the user know that the device is running, and it also buys time for the SD card to read all the data before needing to display it. 
 
-<img src="boot_screen.jpg" alt="boot screen" width="300"/>
+<img src="/boot_screen.jpg" alt="boot screen" width="300"/>
 
 The next screen displayed allows the user to navigate through their programmed remotes. This “Choose a Remote” screen uses a small red bar on the left-hand side of the screen to show which remote is selected. If there are more than one remote, the user may scroll to their desired remote using up and down on the joystick. The user can then press in or right on the joystick to progress to the buttons stored in the highlighted remote.
 
-<img src="remote_screen.jpg" alt="remote screen" width="300"/>
+<img src="/remote_screen.jpg" alt="remote screen" width="300"/>
 
 Once the user has selected their remote and advanced to the buttons within that selection, the “Choose a Button” screen allows the user to highlight the desired button with the same technique as the “Choose a Remote” screen. If the user wants to broadcast the signal of one of these buttons, they may highlight the button and press the “A” button on the top left of the display plate. If they do not want to broadcast any of these buttons, they may go back to the “Choose a Remote” screen by pressing left on the joystick.
 
-<img src="button_screen.jpg" alt="button screen" width="300"/>
+<img src="/button_screen.jpg" alt="button screen" width="300"/>
 
 If at any point the user wants to program a new button or remote, they may press the “B” button on the top right of the display plate. This will display the “Running Serial Interface” screen and prevent the user from interacting with the LCD. All the user input will then be handled by the serial interface on a computer.
 
-<img src="serial_screen.jpg" alt="serial screen" width="300"/>
+<img src="/serial_screen.jpg" alt="serial screen" width="300"/>
 
 ### Data Storage
 
