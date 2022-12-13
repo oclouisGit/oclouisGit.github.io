@@ -1430,16 +1430,19 @@ int main(){
 
 
 ```
+
 ## Appendix C - Schematics
+
 ## Appendix D - Work Breakdown
 
 ## Appendix E - References and Parts
-# Libraries
+
+### Libraries
 
 * SD Card C Library: http://elm-chan.org/fsw/ff/00index_e.html
 * LCD Screen C Library: https://www.waveshare.com/wiki/Pico-LCD-1.14
 
-# Parts
+### Parts
 
 * Raspberry Pi Pico: https://www.raspberrypi.com/products/raspberry-pi-pico/
 * LCD Screen: https://www.waveshare.com/wiki/Pico-LCD-1.14
