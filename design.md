@@ -107,12 +107,19 @@ In order to ensure that the data on the SD card is up-to-date at all times and t
 The data is written to and read from the SD card as text line by line. The data is stored in a .txt file and thus our data had to be stored in an intelligent way to ensure fast reading. We chose to store the data in the following form:
 
 > remote
+> 
 > “the remote name”
+> 
 > button
+> 
 > “the button name”
+> 
 > signal
+> 
 > “signal[0]”
+> 
 > “signal[1]” …
+> 
 
 This form is results in very simple file read and write methods that work flawlessly. This also means that the user is able to modify the data by simply plugging the SD card into their computer. This allows for an even larger degree of customization than any other non-volatile memory options.
 
