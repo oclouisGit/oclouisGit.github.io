@@ -1,5 +1,4 @@
 ---
-title:  "Appendices"
 layout: post
 ---
 
