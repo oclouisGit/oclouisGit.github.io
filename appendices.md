@@ -4,6 +4,9 @@ layout: post
 ---
 
 ## Appendix A - Permissions
+The group approves this report for inclusion on the course website.
+The group approves the video for inclusion on the course youtube channel.
+
 ## Appendix B - Commented Code
 ```c
 // Include standard libraries
@@ -1427,7 +1430,18 @@ int main(){
 ```
 ## Appendix C - Schematics
 ## Appendix D - Work Breakdown
+
 ## Appendix E - References and Parts
+# Libraries
+SD Card C Library:
+LCD Screen C Library:
+# Parts
+Raspberry Pi Pico:
+LCD Screen:
+SD Card Breakout Board:
+AA Battery Holder:
+Infrared LED:
+Infrared Reciever:
 
 
 
