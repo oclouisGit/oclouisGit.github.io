@@ -1,13 +1,7 @@
-
 ---
 title:  "Code"
 layout: post
 ---
-
-## Code
-
-Below is the code running the 
-
 
 
 ```c
