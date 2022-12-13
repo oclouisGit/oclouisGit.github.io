@@ -1435,6 +1435,15 @@ int main(){
 
 ## Appendix D - Work Breakdown
 
+* LCD User Interface: Owen Louis
+* Serial User Interface: Liam Sweeney
+* SD Card Support: Owen Louis
+* Infrared Communications: Liam Sweeney
+* Battery Power: Owen Louis
+* Physical Construction: Owen Louis
+* Testing: Owen Louis and Liam Sweeney
+* Webpage: Owen Louis and Liam Sweeney
+
 ## Appendix E - References and Parts
 
 ### Libraries
