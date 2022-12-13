@@ -1435,9 +1435,12 @@ int main(){
 
 ## Appendix E - References and Parts
 # Libraries
+
 * SD Card C Library: http://elm-chan.org/fsw/ff/00index_e.html
 * LCD Screen C Library: https://www.waveshare.com/wiki/Pico-LCD-1.14
+
 # Parts
+
 * Raspberry Pi Pico: https://www.raspberrypi.com/products/raspberry-pi-pico/
 * LCD Screen: https://www.waveshare.com/wiki/Pico-LCD-1.14
 * SD Card Breakout Board: https://www.digikey.com/en/products/detail/adafruit-industries-llc/4682/12822319
