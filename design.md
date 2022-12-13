@@ -1,6 +1,6 @@
 
 ---
-title:  "Markdown examples"
+title:  "Design"
 layout: post
 ---
 
