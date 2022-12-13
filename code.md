@@ -1,5 +1,5 @@
 ---
-title:  "Code"
+title:  "Appendices"
 layout: post
 ---
 
