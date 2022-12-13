@@ -1,4 +1,3 @@
-
 ---
 title:  "Design"
 layout: post
