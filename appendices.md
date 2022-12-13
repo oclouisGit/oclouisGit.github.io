@@ -3,7 +3,8 @@ title:  "Appendices"
 layout: post
 ---
 
-
+## Appendix A - Permissions
+## Appendix B - Commented Code
 ```c
 // Include standard libraries
 #include <stdio.h>
@@ -1424,4 +1425,9 @@ int main(){
 
 
 ```
+## Appendix C - Schematics
+## Appendix D - Work Breakdown
+## Appendix E - References and Parts
+
+
 
