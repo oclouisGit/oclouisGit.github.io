@@ -16,7 +16,7 @@ minimal: false             # use a dark header
 # Menu
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
-  - {file: "projectoverview.md", title: "Project Overview"}
+  - {file: "index.html", title: "Project Overview"}
   - {file: "projectdemo.md", title: "Project Demonstration"}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
