@@ -45,6 +45,13 @@ All data management with the SD card is handled behind the scenes so that the us
 
 Since we chose to use an SD card as our non-volatile memory solution, there is no concern of storing too much data. The only issue presented by the SD card is the strict communication requirements. To accomplish this system, we used an existing C library that can handle all FAT32 file transactions with the SD card over SPI. Although SPI is a slower method of communicating with an SD card, the protocol is significantly less complicated and suits our needs more appropriately.
 
+### Standards and Patents
+
+Our design was not influenced by any government standards due to our exact replication of the already existing infrared remote signals. We also chose to underpower our infrared LED to ensure that we were broadcasting safe levels of infrared light.
+
+We have used libraries for communicating with the LCD screen and SD card. All libraries used are free for public use.
+
+
 ## Blockquotes
 
 ### Single line
