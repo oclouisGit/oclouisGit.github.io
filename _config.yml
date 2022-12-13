@@ -18,7 +18,7 @@ minimal: false             # use a dark header
 navigation:                # accepts {file, title, url, icon, sidebaricon}
   - {file: "design.md", title: "Design"}
   - {file: "projectdemo.md", title: "Demonstration"}
-  - {file: "code.md", title: "Code"}
+  - {file: "appendices.md", title: "Appendices"}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
   - {title: Mail, icon: envelope, url: "mailto:ocl6@cornell.edu"}
