@@ -1,6 +1,6 @@
 
 ---
-title:  "Markdown examples"
+title:  "Code"
 layout: post
 ---
 
