@@ -1433,6 +1433,9 @@ int main(){
 
 ## Appendix C - Schematics
 
+<img src="/schematic.png" alt="hardware schematic" width="600"/>
+
+
 ## Appendix D - Work Breakdown
 
 * LCD User Interface: Owen Louis
