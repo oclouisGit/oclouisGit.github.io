@@ -16,8 +16,9 @@ minimal: false             # use a dark header
 # Menu
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
-  - {file: "index.html", title: "Project Overview"}
-  - {file: "projectdemo.md", title: "Project Demonstration"}
+  - {file: "design.md", title: "Design"}
+  - {file: "projectdemo.md", title: "Demonstration"}
+  - {file: "code.md", title: "Code"}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
   - {title: Mail, icon: envelope, url: "mailto:ocl6@cornell.edu"}
