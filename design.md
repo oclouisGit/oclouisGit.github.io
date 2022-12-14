@@ -75,7 +75,7 @@ We have used libraries for communicating with the LCD screen and SD card. All li
 ## Hardware Design
 
 <p align="center">
-<img src="/schematic.png" alt="schematic" width="300"/>
+<img src="/schematic.png" alt="schematic" width="600"/>
 </p>
 
 For the circuitry in place for our system, we had to utilize almost every GPIO Pin, only GPIO14 and GPIO22 remain untouched.  In order to showcase the LCD shield in our system in the cleanest way possible in our schematic, No Connections (the X’s) were inserted to dictate the connections of the system.  For the LCD, the N.C.s were used to show unused pins.  The LCD shield considers all of the grounds as valid, however with ground being ground, it does not have permission over the pin as is the case with GPIO pins.  As a result, our ground is still free for other circuitry elements as well.  The N.C. on the Raspberry Pi Pico, however, is used to dictate that the pin is being utilized via the shield and, as a result, is unavailable to local circuitry components.
@@ -181,7 +181,7 @@ We ensured the device is safe by underpowering the infrared LED to a value that 
 In the end our device was completed exactly to the specifications of our project proposal, and the remote is able to act as a complete substitute for any typical infrared remote.
 
 <p align="center">
-<img src="/scope.png" alt="scope view" width="300"/>
+<img src="/scope.jpg" alt="scope view" width="300"/>
 </p>
 
 ## Conclusions
