@@ -74,15 +74,42 @@ We have used libraries for communicating with the LCD screen and SD card. All li
 
 ## Hardware Design
 
+<p align="center">
+<img src="/schematic.png" alt="schematic" width="300"/>
+</p>
+
+For the circuitry in place for our system, we had to utilize almost every GPIO Pin, only GPIO14 and GPIO22 remain untouched.  In order to showcase the LCD shield in our system in the cleanest way possible in our schematic, No Connections (the X’s) were inserted to dictate the connections of the system.  For the LCD, the N.C.s were used to show unused pins.  The LCD shield considers all of the grounds as valid, however with ground being ground, it does not have permission over the pin as is the case with GPIO pins.  As a result, our ground is still free for other circuitry elements as well.  The N.C. on the Raspberry Pi Pico, however, is used to dictate that the pin is being utilized via the shield and, as a result, is unavailable to local circuitry components.
+
+During the assembly of the circuit, we had some issues with having the LCD receiver to output waveforms high enough to be detected as logical high.  It was then realized the issue was the input impedance of the Raspberry Pi Pico appeared to be significantly lower than expected, forming an unfavorable voltage divider between the Raspberry Pi Pico and the LCD receiver’s internal resistors.  Eventually, it was found that the GPIO pin had automatically enabled a pull-down resistor to ground rather than our observations being the default input impedance.  Once we disabled that, we were able to detect signals from our device perfectly fine.
+
+Regarding the mobile powering of our system, a 2xAA battery container was all that was required to power the system.  We included a switch so that the user may turn the remote controller on and off as they please to conserve power.  We chose to hook this signal up to VSYS to help the system’s stability with the power.  The LCD Shield also utilizes it as its effective VDD, however, just like with the case with GND, this does not make a large difference in this case.
+
+In terms of assembly, a lot of the components were soldered in free-space as we felt like there was not enough strict circuit complexity that would require a more PCB/Perfboard approach to the issue.
+
 
 ## Software Design
 
 ### IR Communications
 
+For the IR Communications, the key element is precise timings of the system.  As a result, our approach is to halt any potential side-processes of our system as the IR communications are currently undergoing.  Two separate approaches were taken in the execution of the receiving and recording of the IR signals and the re-broadcasting of the signals, and these two systems were designed to work together.
+
+IR protocols wildly differ from system to system, so the first element to address is how to properly record and store the information about a given IR signal into our system.  After some pondering, the realization was made that there were two key elements that connected all IR signal protocols: Precise timings and a binary state of the IR LED being on or off.  As a result, it was decided that the best approach would be to not attempt to decode what the individual IR protocol may be transmitting but instead, directly mimic the signal by precisely measuring each time the signal is toggled from on to off or vice versa.  From this information, we can then mimic whatever signal we are trying to without care for what micro-protocol the system may be utilizing.
+
+For the IR receiver, this was tackled via a call to an interrupt.  In order to make the timing as good as possible, it simply quickly checks that it is not about to exceed the signal storage’s allotted space in memory and then dumps the system’s precise time into that array for later processing.  At the same time, each iteration both iterates the first index of the array that dictates the tail of the signal’s data in the C array alongside resetting the timeout alarm clock information so that the system can automatically and accurately detect when a given IR signal is finished broadcasting both for ease of user experience and to avoid any potential errors.
+
+Once the system detects the timeout of the system has occurred, it encodes the signal before storing it into its proper button.  This primarily means that it takes the difference in time between two different steps of the signal to make the data more generalized instead of dictating the exact system time when the user had happened to record the signal.  At the same time, this encoding process is careful to preserve the first index of the array that dictates the tail of the signal.
+
+When it comes time to rebroadcast the signal, the LCD button state processing sends out the exact encoded signal associated with the button to an external method to perform the broadcast.  This method can read in exactly how much signal it should be broadcasting from the initial index of the encoded signal and from that point, it progresses through the rest of the encoded signal array, utilizing each index to dictate the exact length the process should sleep before toggling the LED once more.  Due to the binary nature of the system, it is guaranteed that any swapping of the signal will result in a LED toggling.  As a result, attempting to explicitly dictate whether each signal was turning on or off is redundant and we aimed to take full advantage of that fact in our scheme.  Once the LED broadcasting is complete, the system simply relinquishes control back to the LCD methods once more to continue processing.
+
 
 
 ### Serial Interface
 
+In order to implement the serial interface for this process, we chose to utilize the protothreads library that were utilized within this course from Lab 02 onwards.  Although this added a bit of complexity from the limitations of utilizing a stackless thread by having to dictate several variables as static/global so they won’t relinquish their data every time the PT thread automatically or is told to yield.  However, by use of a protothread, there was one key element that we were able to take advantage of for this choice: yielding the code when detecting a signal.
+
+The implementation we chose to employ is to have the serial processing stall on a volatile signal variable dictating that the process is done receiving and encoding the signal that is being received.  Usually, this would have to be done via a waiting while loop, constantly leaking processing power into it and presenting a possibility of knocking off the system’s timing.  The reason why this needs to be done is to disable the interrupt service routine (ISR) being utilized every time the IR receiver detects a rising or falling edge; it is used to signal to stop attempting to detect the signal, alongside doing final required processing elements.  However, utilizing the PT Threads, we can instead simply have it yield until it detects the signal that the IR reading process is done before continuing.  This holds importance due to the precise timing the IR mimicking requires.  This, alongside the LCD screen entering a stalling programming mode setting, ensures the minimal possible interference with critical timings.
+
+Past this point, nothing too special happens within the serial interface other than regular verifying of inputs and valid setting of parameters, forming a simple FSM program flow described in the high level design section.
 
 
 ### LCD Interface
@@ -123,7 +150,7 @@ The data is written to and read from the SD card as text line by line. The data 
 
 This form is results in very simple file read and write methods that work flawlessly. This also means that the user is able to modify the data by simply plugging the SD card into their computer. This allows for an even larger degree of customization than any other non-volatile memory options.
 
-## Debugging adn Testing
+## Debugging and Testing
 
 ### Debugging
 
@@ -145,8 +172,27 @@ Testing the serial and lcd interfaces was easy as we could add as much data as w
 
 ## Results
 
+Our project has been a resounding success, as can be seen in the demonstration video. The remote is entirely usable as intended and is very user friendly. We have ensured accuracy by scoping the LED output and comparing it to a scope of the IR receiver when a signal is received. A scope trace of the output can be seen below which shows how clean and binary every edge is during the transaction. The validity of the remotes output has been demonstrated in the demonstration video by controlling the air conditioning unit from only our device.
+
+Our display has no flickering due to our intelligent refreshing decisions of refreshing only the needed pixels. We also have successfully hidden the SD card reading time behind a boot screen. This allows for the most seamless user experience when powering on the device. We have also hidden the screen when the serial interface is running to avoid unnecessary refreshes of the display. 
+
+We ensured the device is safe by underpowering the infrared LED to a value that is well below the safe limit for human interaction. This does negatively impact the range of our remote, but a safe remote with a low range is better than a dangerous remote with a long range. 
+
+In the end our device was completed exactly to the specifications of our project proposal, and the remote is able to act as a complete substitute for any typical infrared remote.
+
+<p align="center">
+<img src="/scope.png" alt="scope view" width="300"/>
+</p>
+
 ## Conclusions
 
+Through many struggles and a lot of debugging, we were able to successfully reach every single goal we had for this project and only did not end up reaching for a single far-reaching goal of 3D printing our assembly.  However, we do feel as if our project’s assembly is far from being unpresentable, being able to assemble it in a general hand-held form and is not overly-aggressive towards the touch, overall only lacking in the plastic durability element.  One consequence of the cardboard-tape assembly of the project, however, is the difficulty of creating a system to easily have the 2xAA batteries both secured and easily accessible for replacement.  As a result, we do feel that having a firmer assembly in place would be a step required to take the project even further, however as it does not necessarily affect the default usage of our remote, and we do provide a switch to help preserve the given battery life, we do believe that it is still acceptable to call the project a resounding success.
+
+One issue we encountered to a large degree was the attempt to integrate both the programming of the serial interface and the IR systems with the LCD system.  Beyond just the normal integration woes, which we were in part hoping would not occur due to us putting the two sets of systems on different cores but happened anyways, we also did not exactly standardize how we would interface between the two systems beforehand.  As a result, we ended up awkwardly dealing with multiple ways of dealing with how remotes and buttons are stored and interpreted.  This error feels like with more coordination it could have easily been avoided and we feel as if we learned from this for future projects to not needlessly further complicate the process of integration.
+
+Within this project, we utilized a public library for the LCD screen and another for the SD Card, in which you can view in Appendix E.  Past that, we also utilized the C SDK for Raspberry Pi Pico alongside the PT Thread library provided for us throughout the course.
+
+In addition, we made sure to be very conservative in our current limiting of our IR LED to be visually risk-free to the eyes.  At this point, this resulted in the IR LED being too weak to be received reliably from greater distances than 1.5 feet.  We are certain that this is below any maximum protection standards as the base remote showed significantly stronger reception.  In the future, it could be considered to decrease the current limitation to allow for stronger LED lighting and reception.
 
 
 
